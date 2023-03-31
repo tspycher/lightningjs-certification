@@ -1,0 +1,7 @@
+{
+  "name": "com.tspycher.app.lightning.certification",
+  "description": "My Certification",
+  "dependencies": {
+    "@lightningjs/sdk": "^5.3.1"
+  }
+}
