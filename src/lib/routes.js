@@ -1,28 +1,23 @@
-import { Home } from '../pages/Home'
-import { Boot } from '../pages/Boot'
-import { Detail } from '../pages/Detail'
+import {Home} from '../pages/Home'
+import {Boot} from '../pages/Boot'
+import {Detail} from '../pages/Detail'
 import {Api} from "./api";
-import {MovieBox} from "../components/MovieBox";
 
-const loadMovies = async ()=>{
+const loadMovies = async () => {
     try {
         var api = new Api();
         var data = await api.getMovies();
-        let boxes = [];
+        return data;
+    } catch (e) {
+        console.log(e)
+    }
+}
 
-        for (var movie of data.results.slice(0,20)) {
-            console.log(movie);
-
-            boxes.push({
-                    type: MovieBox,
-                    boxPoster: "https://image.tmdb.org/t/p/w500" + movie.poster_path,
-                    boxName: movie.title,
-                    tmbdId: movie.id,
-            });
-        }
-        return boxes;
-
-    } catch (e){
+const loadMovieDetail = async (tmdbId) => {
+    try {
+        var api = new Api();
+        return await api.getMovieDetails(tmdbId);
+    } catch (e) {
         console.log(e)
     }
 }
@@ -42,21 +37,27 @@ export default {
             path: '!',
             component: ErrorPage
         },*/
-        { path: '$',component: Boot },
+        {path: '$', component: Boot},
         {
             path: "home",
             component: Home,
-            before: async(page)=> {
-                page.content = await loadMovies();
-
+            before: async (page) => {
+                if (page.searchstring) {
+                    page.content = await page.searchMovies();
+                } else {
+                    page.content = await loadMovies();
+                }
             },
         },
-        { path: "detail", component: Detail },
+        {
+            path: "detail/:tmdbId", component: Detail,
+            before: async (page) => {
+                page.details = await loadMovieDetail(page.tmdbId);
+            },
+        },
     ],
 
 }
-
-
 
 // $ - boot page
 // * - catch all page

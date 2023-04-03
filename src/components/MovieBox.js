@@ -1,37 +1,29 @@
-import { Lightning } from "@lightningjs/sdk";
+import {Lightning, Router} from "@lightningjs/sdk";
 
-const poster_w = 150,
-      poster_h = 200;
+const poster_w = 250,
+    poster_h = 400;
+
 export class MovieBox extends Lightning.Component {
 
     static _template() {
         return {
-            //rect: true,
             w: poster_w,
             h: poster_h,
             mount: 0.5,
             src: this.bindProp("boxPoster"),
-
-            //flexItem:{ margin: 10 },
-            /*Label: {
-                text: {
-                    text: this.bindProp("boxName"),
-                    fontFace: 'Regular',
-                    fontSize: 18,
-                    textColor: 0xffffffff,
-                }
-            },*/
         }
     }
 
     _handleEnter() {
         console.log(this.tmbdId);
+        Router.navigate("detail/" + this.tmbdId);
     }
+
     _focus(newFocusedComponent, prevFocusedComponent) {
         super._focus(newFocusedComponent, prevFocusedComponent);
         this.patch({
-            w: poster_w*1.2,
-            h: poster_h*1.2,
+            w: poster_w * 1.3,
+            h: poster_h * 1.3,
             shader: {type: Lightning.shaders.Outline, stroke: 5}
         })
     }

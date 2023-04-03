@@ -1,30 +1,41 @@
-import { Settings } from '@lightningjs/sdk'
+import {Settings} from '@lightningjs/sdk'
 
 
 export class Api {
 
-
-    async getMovies() {
-        // https://api.themoviedb.org/3/trending/movie/week?api_key=*****
+    async searchMovie(query) {
         const headers = [
             ['Content-Type', 'application/json'],
         ];
-        const data = await fetch("https://api.themoviedb.org/3/trending/movie/week?"+ new URLSearchParams({
+        const data = await fetch("https://api.themoviedb.org/3/search/movie?" + new URLSearchParams({
             api_key: Settings.get("app", "tmdb_api_key"),
-        }), { headers });
+            language: "en-US",
+            query: query,
+            include_adult: "false"
+        }), {headers});
 
         return data.json();
     }
 
-    async getMovieDetails(movieid) {
-        // https://api.themoviedb.org/3/movie/603692?api_key=*****&language=en-US
+    async getMovies() {
         const headers = [
             ['Content-Type', 'application/json'],
         ];
-        const data = await fetch("https://api.themoviedb.org/3/movie/"+movieid+"?"+ new URLSearchParams({
+        const data = await fetch("https://api.themoviedb.org/3/trending/movie/week?" + new URLSearchParams({
+            api_key: Settings.get("app", "tmdb_api_key"),
+        }), {headers});
+
+        return data.json();
+    }
+
+    async getMovieDetails(tmdbId) {
+        const headers = [
+            ['Content-Type', 'application/json'],
+        ];
+        const data = await fetch("https://api.themoviedb.org/3/movie/" + tmdbId + "?" + new URLSearchParams({
             api_key: Settings.get("app", "tmdb_api_key"),
             language: "en-US"
-        }), { headers });
+        }), {headers});
 
         return data.json();
     }

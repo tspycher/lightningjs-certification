@@ -4,11 +4,20 @@ export class Boot extends Lightning.Component {
 
     static _template() {
         return {
+            PrimaryBackground: {
+                rect: true,
+                w: 1920,
+                h: 1080,
+                color: 0xff000000,
+            },
             Background: {
                 rect: true,
                 w: 1920,
                 h: 1080,
-                color: 0xff1e012c,
+                alpha: 0.1,
+                // blocked by cors
+                //src: "https://assets.production.n8r.net/posterwall/poster_3440x1440.png"
+                src: Utils.asset('images/poster_3440x1440.png'),
             },
             Logo: {
                 mountX: 0.5,
@@ -34,13 +43,8 @@ export class Boot extends Lightning.Component {
     }
 
     _init() {
-        console.log("doing some stuff here");
-
         setTimeout(function() {
             Router.root();
-            //Router.navigate("home/ben", {blafasel:"kevin"});
-        }, 1000);
-
-
+        }, 2000);
     }
 }
