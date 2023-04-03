@@ -14,8 +14,8 @@ as with the initial Top Movies.
 With Backspace the searchstring can get erased. As soon as the Searchstring is empty 
 search gets disables and the box disappears.
 
-I'm not a Designer nor a JavaScript Developer. And I will never be any of these ;) But i'm very
-happy to understand LightningJS better to support my Team from an architecture point of view, is 
+I'm not a Designer nor a JavaScript Developer. And I will never be any of these ;) But I'm very
+happy to understand LightningJS better to support my Team from an architecture point of view, which is 
 my main responsibility as "Head of Technology".
 
 Thanks for the great training! It was FUN especially as this topic, from various aspects, is new to me.

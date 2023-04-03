@@ -78,7 +78,7 @@ export class Home extends Page {
         this.showSearchBox();
         if (e.code == "Backspace") {
             this.searchstring = this.searchstring.slice(0, -1);
-            if (!this.searchstring) {
+            if (this.searchstring.length == 0) {
                 this.hideSearchBox();
                 Router.reload();
             }
