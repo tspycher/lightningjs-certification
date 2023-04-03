@@ -26,53 +26,44 @@ export class Home extends Page {
 
     static _template() {
         return {
-            ...super._template(),
-            MoviesRow: {
+            //...super._template(),
+            Background: {
                 rect: true,
-                w: (w) => {return w },
-                h: 400,
-                x: 0,
-                y: 1080 / 2,
-                mountX: 0,
-                mountY: 0.5,
+                w: 1920,
+                h: 1080,
+            },
+            MoviesRow: {
+                //rect: true,
+                w: 1920,
+                h: 1080,
+                x: 960,
+                y: 540,
                 color: 0x44000000,
-
+                mount: 0.5,
                 flex: {
-                    direction: 'row',
-                    padding: 20,
+                    direction: "row",
+                    padding: 5,
                     justifyContent: "space-evenly",
-                    alignItems: 'center',
-                    wrap: 'true'
+                    alignContent: "center",
+                    //flexFlow: ["column", "wrap"],
+                    wrap: true
                 },
             }
         }
     }
 
-    _setup() {
+    _init() {
         this.index = 0;
     }
 
-    async _init() {
-        var api = new Api();
-        const data = await api.getMovies();
-
-        let tempMovies = [...this.tag("MoviesRow").children];
-
-        for (var movie of data.results.slice(0,6)) {
-            //var starship = data.results[i];
-            console.log(movie);
-
-            tempMovies.push({
-                ["Movie"+movie.id]: {
-                    type: MovieBox,
-                    boxPoster: "https://image.tmdb.org/t/p/w500" + movie.poster_path,
-                    boxName: movie.title,
-                }
-            });
+    set content(v) {
+        console.log(v);
+        if (v) {
+            this.tag("MoviesRow").patch({
+                children: v
+            })
+            //this.tag("MoviesRow").childList.add(v);
         }
-        this.tag("MoviesRow").patch({
-            children: tempMovies
-        })
     }
 
     set params(data) {
@@ -84,7 +75,6 @@ export class Home extends Page {
         if(this.index == this.tag("MoviesRow").children.length-1) return;
         this.index++;
         console.log(this.index);
-
     }
 
     _handleLeft() {
@@ -94,10 +84,13 @@ export class Home extends Page {
     }
 
     _getFocused() {
-        if (this.tag("MoviesRow").children.length && this.index >= 0) {
-            //return this.tag("MoviesRow").children[this.index];
-        }
-        return super._getFocused();
+        var box = this.tag("MoviesRow").children[this.index];
+        this.patch({
+            Background: {
+                src: box.src,
+            }
+        });
+        return box;
     }
 
 }
