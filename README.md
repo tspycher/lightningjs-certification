@@ -1,5 +1,7 @@
 # My LightningJS Certification
 
+Here is a video showing the solution in action: https://youtu.be/z-6_UKtCJLI
+
 ## Summary
 This is my little app to finish the LightningJS Training from March 2023. The app 
 loads 5 trending Movies. With left/right a movie can get selected and with a hit on
