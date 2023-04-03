@@ -1,4 +1,32 @@
-# My Certification
+# My LightningJS Certification
+
+## Summary
+This is my little app to finish the LightningJS Training from March 2023. The app 
+loads 5 trending Movies. With left/right a movie can get selected and with a hit on
+enter a detail pages opens. With Backspace or left you can navigate back to the home screen.
+
+Just start typing any Movie Name and the Search appears. As soon as more than 3 chars are entered
+a 750ms delayed search gets performed and the top 5 results are displayed. The Items behave the same 
+as with the initial Top Movies.
+
+With Backspace the searchstring can get erased. As soon as the Searchstring is empty 
+search gets disables and the box disappears.
+
+I'm not a Designer nor a JavaScript Developer. And I will never be any of these ;) But i'm very
+happy to understand LightningJS better to support my Team from an architecture point of view, is 
+my main responsibility as "Head of Technology".
+
+Thanks for the great training! It was FUN especially as this topic, from various aspects, is new to me.
+
+## Things to improve
+
+* Design
+* Handling vertical scrolling to support more than 5 items
+* Some X/Y placement's are odd
+* reduce the amount of calls to the tmdb api (caching)
+* the data for the calls are redundant and data could get passed between pages
+* use of states for better effect/movie selection handling
+* mixed responsibility of pages + router
 
 ## com.tspycher.app.lightning.certification
 
