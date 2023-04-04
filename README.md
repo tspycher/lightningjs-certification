@@ -11,7 +11,7 @@ Just start typing any Movie Name and the Search appears. As soon as more than 3 
 a 750ms delayed search gets performed and the top 5 results are displayed. The Items behave the same 
 as with the initial Top Movies.
 
-With Backspace the searchstring can get erased. As soon as the Searchstring is empty 
+With Backspace the search-string can get erased. As soon as the search-string is empty 
 search gets disables and the box disappears.
 
 I'm not a Designer nor a JavaScript Developer. And I will never be any of these ;) But I'm very
@@ -25,7 +25,7 @@ Thanks for the great training! It was FUN especially as this topic, from various
 * Design
 * Handling vertical scrolling to support more than 5 items
 * Some X/Y placement's are odd
-* reduce the amount of calls to the tmdb api (caching)
+* reduce the amount of calls to the TMDB api (caching)
 * the data for the calls are redundant and data could get passed between pages
 * use of states for better effect/movie selection handling
 * mixed responsibility of pages + router
@@ -41,6 +41,8 @@ Thanks for the great training! It was FUN especially as this topic, from various
 npm install -g @lightningjs/cli
 ```
 
+finally in the file `settings.json` add your TMDB API key in the field `tmdb_api_key`.
+
 #### Running the App
 
 1. Install the NPM dependencies by running `npm install`
@@ -51,7 +53,7 @@ npm install -g @lightningjs/cli
 
 #### Developing the App
 
-During development you can use the **watcher** functionality of the _Lightning-CLI_.
+During development, you can use the **watcher** functionality of the _Lightning-CLI_.
 
 - use `lng watch` to automatically _rebuild_ your App whenever you make a change in the `src` or  `static` folder
 - use `lng dev` to start the watcher and run a local webserver / open the App in a browser _at the same time_
